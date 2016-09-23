@@ -162,41 +162,8 @@
 
       if (item.id === 'OT_capture') {
         self.selectedItem = item;
+        self.captureScreenshot();
 
-        if (!self.overlay) {
-          self.overlay = document.createElement('div');
-          self.overlay.id = 'captureOverlay';
-          self.overlay.style.position = 'absolute';
-          self.overlay.style.top = '0px';
-          self.overlay.style.width = self.parent.clientWidth + 'px';
-          self.overlay.style.height = self.parent.clientHeight + 'px';
-          self.overlay.style.background = 'rgba(0,0,0,0.4) url("' +
-            self.imageAssets +'annotation-camera.png") no-repeat center';
-          self.overlay.style.backgroundSize = '50px 50px';
-          self.overlay.style.cursor = 'pointer';
-          self.overlay.style.opacity = 0;
-
-          self.parent.appendChild(self.overlay);
-
-          self.parent.onmouseover = function () {
-            self.overlay.style.opacity = 1;
-            self.overlay.style.zIndex = 1010;
-          };
-
-          self.parent.onmouseout = function () {
-            self.overlay.style.opacity = 0;
-          };
-
-          self.overlay.onclick = function () {
-            self.captureScreenshot();
-            self.parent.removeChild(self.overlay);
-            self.overlay = null;
-            self.parent.onmouseover = null;
-            self.parent.onmouseout = null;
-          };
-        } else {
-          self.overlay.style = 'inline';
-        }
       } else if (item.id.indexOf('OT_line_width') !== -1) {
         if (item.size) {
           self.changeLineWidth(item.size);
