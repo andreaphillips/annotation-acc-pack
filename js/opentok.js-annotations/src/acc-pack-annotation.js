@@ -181,6 +181,8 @@
   };
 
   var _createToolbar = function (session, options, externalWindow) {
+    _setupUI();
+
     var toolbarId = _.property('toolbarId')(options) || 'toolbar';
     var items = _.property('toolbarItems')(options);
     var colors = _.property('colors')(options) || _palette;
@@ -421,7 +423,6 @@
     // init analytics logs
     _logAnalytics();
     _log(_logEventData.actionInitialize, _logEventData.variationSuccess);
-    _setupUI();
   };
 
   AnnotationAccPack.prototype = {
