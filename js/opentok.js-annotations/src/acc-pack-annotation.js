@@ -400,6 +400,15 @@
 
     _log(_logEventData.actionEnd, _logEventData.variationSuccess);
   };
+
+  var hideToolbar = function () {
+    $(toolbar.parent).hide();
+  };
+
+  var showToolbar = function () {
+    $(toolbar.parent).show();
+  };
+
   /**
    * @constructor
    * Represents an annotation component, used for annotation over video or a shared screen
@@ -430,7 +439,9 @@
     linkCanvas: linkCanvas,
     resizeCanvas: resizeCanvas,
     addSubscriberToExternalWindow: addSubscriberToExternalWindow,
-    end: end
+    end: end,
+    hideToolbar:hideToolbar,
+    showToolbar:showToolbar
   };
 
   if (typeof exports === 'object') {
