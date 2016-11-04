@@ -37,6 +37,12 @@
 - (void)addAnnotatable:(id<OTAnnotatable>)annotatable;
 
 /**
+ *  Remove the top annotatable object from a connection id.
+ *
+ */
+
+- (void)undoAnnotatableWithCid:(NSString*)cid;
+/**
  *  Remove the top annotatable object.
  *
  *  @return The removed annotatable object.
@@ -54,5 +60,10 @@
  *  Clear up the stack.
  */
 - (void)popAll;
+
+/**
+ *  Remove the ones with connection id.
+ */
+- (void)popAllWithCid:(NSString*)cid;
 
 @end

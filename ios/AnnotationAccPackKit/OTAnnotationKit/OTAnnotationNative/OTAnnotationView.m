@@ -88,9 +88,24 @@
     }
 }
 
-- (void)removeAllAnnotatables {
+- (void)undoAnnotatableWithCid:(NSString*)cid {
+    
+    [self.annotationDataManager undoAnnotatableWithCid:cid];
+    [self setNeedsDisplay];
+    [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
+    
+}
+
+- (void)removeAllAnnotatables{
     
     [self.annotationDataManager popAll];
+    [self setNeedsDisplay];
+    [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
+}
+
+- (void)removeAllAnnotatablesWithCid:(NSString*)cid {
+    
+    [self.annotationDataManager popAllWithCid:cid];
     [self setNeedsDisplay];
     [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
 }

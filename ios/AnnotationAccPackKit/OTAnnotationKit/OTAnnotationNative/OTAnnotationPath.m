@@ -33,6 +33,7 @@
 @end
 
 @implementation OTAnnotationPath
+@synthesize cid;
 
 - (NSArray<OTAnnotationPoint *> *)points {
     return [_mutablePoints copy];
@@ -43,6 +44,15 @@
     path.mutablePoints = [[NSMutableArray alloc] init];
     path.strokeColor = strokeColor;
     path.lineWidth = 3.0f;
+    return path;
+}
+
++ (instancetype)pathWithStrokeColor:(UIColor *)strokeColor andCid:(NSString *)cid{
+    OTAnnotationPath *path = [[OTAnnotationPath alloc] init];
+    path.mutablePoints = [[NSMutableArray alloc] init];
+    path.strokeColor = strokeColor;
+    path.lineWidth = 3.0f;
+    path.cid = cid;
     return path;
 }
 

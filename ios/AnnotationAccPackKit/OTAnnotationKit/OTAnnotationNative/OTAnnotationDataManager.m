@@ -54,8 +54,29 @@
     [self pop];
 }
 
+- (void)undoAnnotatableWithCid:(NSString*)cid{
+    NSMutableArray *filteredArray =[[NSMutableArray alloc] init];
+    
+    for(OTAnnotationPath *path in _mutableAnnotatable){
+        if([[path cid] isEqualToString:cid]){
+            [filteredArray addObject:path];
+        }
+    }
+
+    [_mutableAnnotatable removeObject:filteredArray.lastObject];
+}
+
 - (void)popAll {
     [_mutableAnnotatable removeAllObjects];
+    [self annotatable];
+}
+
+- (void)popAllWithCid:(NSString*)cid {
+    for(OTAnnotationPath *path in [_mutableAnnotatable reverseObjectEnumerator]){
+        if([[path cid] isEqualToString:cid]){
+            [_mutableAnnotatable removeObject:path];
+        }
+    }
     [self annotatable];
 }
 

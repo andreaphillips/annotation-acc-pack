@@ -27,6 +27,8 @@
  */
 @interface OTAnnotationPath : UIBezierPath <OTAnnotatable>
 
+@property (nonatomic) NSString *cid;
+
 /**
  *  The stroke color of the path.
  */
@@ -55,6 +57,7 @@
  *  @return A new object of OTAnnotationPath.
  */
 + (instancetype)pathWithStrokeColor:(UIColor *)strokeColor;
++ (instancetype)pathWithStrokeColor:(UIColor *)strokeColor andCid:(NSString *)cid;
 
 /**
  *  Give the path a start point.

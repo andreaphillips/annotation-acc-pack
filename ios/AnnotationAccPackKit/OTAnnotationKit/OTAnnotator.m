@@ -130,6 +130,32 @@ receivedSignalType:(NSString*)type
  fromConnection:(OTConnection*)connection
      withString:(NSString*)string {
     
+    if ([type isEqualToString:@"otAnnotation_clear"]){
+        if (self.session.sessionConnectionStatus == OTSessionConnectionStatusConnected &&
+            ![self.session.connection.connectionId isEqualToString:connection.connectionId]) {
+            
+            NSArray *jsonArray = [JSON parseJSON:string];
+
+            if (self.annotationScrollView) {
+                [self.annotationScrollView.annotationView removeAllAnnotatablesWithCid:connection.connectionId];
+            }
+        }
+    };
+    
+    if ([type isEqualToString:@"otAnnotation_undo"]){
+        if (self.session.sessionConnectionStatus == OTSessionConnectionStatusConnected &&
+            ![self.session.connection.connectionId isEqualToString:connection.connectionId]) {
+            
+            NSArray *jsonArray = [JSON parseJSON:string];
+            
+            if (self.annotationScrollView) {
+                [self.annotationScrollView.annotationView undoAnnotatableWithCid:connection.connectionId];
+            }
+        }
+    };
+
+
+    
     if (![type isEqualToString:@"otAnnotation_pen"]) return;
 
     if (self.session.sessionConnectionStatus == OTSessionConnectionStatusConnected &&
@@ -160,7 +186,7 @@ receivedSignalType:(NSString*)type
             currentPath.lineWidth = lineWidth;
         }
         else {
-            self.annotationScrollView.annotationView.currentAnnotatable = [OTAnnotationPath pathWithStrokeColor:nil];
+            self.annotationScrollView.annotationView.currentAnnotatable = [OTAnnotationPath pathWithStrokeColor:nil andCid:connection.connectionId];
         }
         
         // calculate drawing position

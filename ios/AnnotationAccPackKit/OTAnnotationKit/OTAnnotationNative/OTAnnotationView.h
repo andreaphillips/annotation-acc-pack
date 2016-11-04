@@ -56,10 +56,17 @@
 - (void)undoAnnotatable;
 
 /**
+ *  Erase the last annotatable object from a connection.
+ */
+- (void)undoAnnotatableWithCid:(NSString*)cid;
+/**
  *  Clear all annotatable objects from the annotation view
  */
 - (void)removeAllAnnotatables;
-
+/**
+ *  Clear all annotatable with a connection id from the annotation view
+ */
+- (void)removeAllAnnotatablesWithCid:(NSString*)cid;
 /**
  *  The current annotatable object that being used, uncommitted. If a new currentAnnotatable is being set, the last annotatable object will be commited.
  */
