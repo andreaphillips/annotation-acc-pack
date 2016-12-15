@@ -1153,9 +1153,7 @@
       _session.on({
         'signal:otAnnotation_pen': function (event) {
           if (event.from.connectionId !== _session.connection.connectionId) {
-            console.log(event.data);
             var paths = JSON.parse(event.data);
-            console.log(paths);
             drawUpdates(paths);
           }
         },
