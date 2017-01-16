@@ -194,3 +194,38 @@
     background-image: url(https://assets.tokbox.com/solutions/images/annotation-arrow.png);
     background-size: 6.5px 23.5px;
 }
+.commitPrompt{
+    background-color: rgba(1, 1, 1, 0.5);
+    width: 200px;
+    border-radius: 5px;
+}
+
+.commitPrompt span{
+    display:block;
+    float: left;
+    width: 100px;
+    height: 40px;
+    font-size: 12px;
+    padding: 10px;
+    color: white;
+    line-height: 20px;
+}
+.dismissClick{
+    display: block;
+    width: 40px;
+    height: 36px;
+    background-image: url("https://assets.tokbox.com/solutions/images/images/trash-can.png");
+    float: left;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+.commitClick{
+    display: block;
+    width: 40px;
+    height: 36px;
+    background-image: url("https://assets.tokbox.com/solutions/images/stroke-3.png");
+    float: right;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}

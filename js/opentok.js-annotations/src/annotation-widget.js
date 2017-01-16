@@ -702,6 +702,9 @@
      */
     var textEvent;
     var textInputId = 'textAnnotation';
+    var commitPopId = 'commitTextPop';
+    var commitPopClickId = 'commitClick';
+    var dismissPopId = 'dismissClick';
     var ignoreClicks = false;
     var handleClick = function (event) {
 
@@ -721,31 +724,6 @@
     };
 
 
-    // Listen for keydown on 'Enter' once the text input is appended
-    var handleKeyDown = function (event) {
-
-      // Enter
-      if (event.which === 13) {
-        processTextEvent();
-      }
-      // Escape
-      if (event.which === 27) {
-        context.getElementById(textInputId).remove();
-        textEvent = null;
-      }
-
-      ignoreClicks = false;
-
-    };
-
-    var addKeyDownListener = function () {
-      context.addEventListener('keydown', handleKeyDown);
-    };
-
-    var removeKeyDownListener = function () {
-      context.removeEventListener('keydown', handleKeyDown);
-    };
-
     /**
      * Get the value of the text input and use it to create an "event".
      */
@@ -760,7 +738,7 @@
       }
 
       textInput.remove();
-      removeKeyDownListener();
+      context.getElementById(commitPopId).remove();
 
       textEvent.text = textInput.value;
       textEvent.font = '16px Arial';
@@ -797,6 +775,7 @@
         x: event.offsetX,
         y: event.offsetY
       }));
+      textInput.setAttribute('data-top',event.clientY - 50)
       textInput.id = textInputId;
 
       context.body.appendChild(textInput);
@@ -804,8 +783,52 @@
 
       textEvent = event;
       textEvent.inputHeight = textInput.clientHeight;
-      addKeyDownListener();
+      ignoreClicks = true;
 
+    };
+    var creteCommitPop  = function(textInput){
+      var commitPop = context.createElement('div');
+
+      commitPop.style.position = 'fixed';
+      commitPop.style.top = textInput.dataset.top + 'px';
+      commitPop.style.left = textInput.style.left;
+      commitPop.style.width = '200px';
+      commitPop.style.fontSize = '16px';
+      commitPop.style.fontFamily = 'Arial';
+      commitPop.style.zIndex = '2000';
+      commitPop.style.border = '1px solid grey';
+      commitPop.style.height = '40px';
+      commitPop.className = "commitPrompt";
+      commitPop.id = commitPopId;
+
+      var commitPopText = context.createElement('span');
+      var text = context.createTextNode("Commit type?");
+      commitPopText.appendChild(text);
+      commitPop.append(commitPopText)
+
+      var commitPopClick = context.createElement('div');
+      commitPopClick.id = commitPopClickId;
+      commitPopClick.className = commitPopClickId;
+
+      var dismissDiv = context.createElement('div');
+      dismissDiv.id = dismissPopId;
+      dismissDiv.className = dismissPopId;
+
+      commitPop.appendChild(commitPopClick);
+      commitPop.appendChild(dismissDiv);
+
+
+      context.body.appendChild(commitPop);
+      dismissDiv.addEventListener('click',function(){
+        context.getElementById(textInputId).remove();
+        context.getElementById(commitPopId).remove();
+        textEvent = null;
+        ignoreClicks = false;
+      });
+
+      commitPopClick.addEventListener('click',function(){
+        processTextEvent();
+      });
     };
 
     addEventListeners(canvas, 'click', handleClick);
