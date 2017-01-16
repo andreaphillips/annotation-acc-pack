@@ -194,13 +194,14 @@
     background-image: url(https://assets.tokbox.com/solutions/images/annotation-arrow.png);
     background-size: 6.5px 23.5px;
 }
-.commitPrompt{
+
+.ots-annotation-prompt{
     background-color: rgba(1, 1, 1, 0.5);
     width: 200px;
     border-radius: 5px;
 }
 
-.commitPrompt span{
+.ots-annotation-prompt span{
     display:block;
     float: left;
     width: 100px;
@@ -210,7 +211,7 @@
     color: white;
     line-height: 20px;
 }
-.dismissClick{
+.ots-annotation-prompt .dissmiss-click{
     display: block;
     width: 40px;
     height: 36px;
@@ -219,7 +220,7 @@
     background-repeat: no-repeat;
     background-position: 50%;
 }
-.commitClick{
+.ots-annotation-prompt .commit-click{
     display: block;
     width: 40px;
     height: 36px;
