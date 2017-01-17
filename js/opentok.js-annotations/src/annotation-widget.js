@@ -703,8 +703,8 @@
     var textEvent;
     var textInputId = 'textAnnotation';
     var commitPopId = 'commitTextPop';
-    var commitPopClickId = 'commit-click';
-    var dismissPopId = 'dissmiss-click';
+    var commitPopClickId = 'comfirm-btn';
+    var dismissPopId = 'dissmiss-btn';
     var ignoreClicks = false;
     var handleClick = function (event) {
 
@@ -798,11 +798,11 @@
       commitPop.style.zIndex = '2000';
       commitPop.style.border = '1px solid grey';
       commitPop.style.height = '40px';
-      commitPop.className = "ots-annotation-prompt";
+      commitPop.className = 'ots-annotation-prompt';
       commitPop.id = commitPopId;
 
       var commitPopText = context.createElement('span');
-      var text = context.createTextNode("Commit type?");
+      var text = context.createTextNode('Commit type?');
       commitPopText.appendChild(text);
       commitPop.append(commitPopText)
 
