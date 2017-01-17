@@ -704,7 +704,7 @@
     var textInputId = 'textAnnotation';
     var commitPopId = 'commitTextPop';
     var commitPopClickId = 'comfirm-btn';
-    var dismissPopId = 'dissmiss-btn';
+    var dismissPopId = 'dismiss-btn';
     var ignoreClicks = false;
     var handleClick = function (event) {
 
