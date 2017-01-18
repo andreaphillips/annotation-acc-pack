@@ -703,7 +703,7 @@
     var textEvent;
     var textInputId = 'textAnnotation';
     var commitPopId = 'commitTextPop';
-    var commitPopClickId = 'comfirm-btn';
+    var commitPopClickId = 'confirm-btn';
     var dismissPopId = 'dismiss-btn';
     var ignoreClicks = false;
     var handleClick = function (event) {
@@ -752,6 +752,7 @@
       }
       eventHistory.push(textEvent);
       updateCanvas(textEvent);
+      ignoreClicks = false;
     };
 
 
@@ -780,6 +781,10 @@
 
       context.body.appendChild(textInput);
       textInput.focus();
+
+      textInput.addEventListener('blur', function(){
+        creteCommitPop(textInput)
+      })
 
       textEvent = event;
       textEvent.inputHeight = textInput.clientHeight;
